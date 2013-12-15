@@ -41,5 +41,6 @@ abstract class AbstractTestCaseWithServiceContainer extends \PHPUnit_Framework_T
     protected function tearDown()
     {
         $this->container->tearDown();
+        $this->container = null;
     }
 }
