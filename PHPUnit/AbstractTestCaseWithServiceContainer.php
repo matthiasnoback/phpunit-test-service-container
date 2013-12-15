@@ -28,11 +28,20 @@ abstract class AbstractTestCaseWithServiceContainer extends \PHPUnit_Framework_T
      */
     protected function setUp()
     {
-        $this->container = new ServiceContainer();
+        $this->container = $this->createServiceContainer();
+
+        $this->container->setUp();
+    }
+
+    protected function createServiceContainer()
+    {
+        $container = new ServiceContainer();
 
         foreach ($this->getServiceProviders() as $serviceProvider) {
-            $this->container->register($serviceProvider);
+            $container->register($serviceProvider);
         }
+
+        return $container;
     }
 
     /**
