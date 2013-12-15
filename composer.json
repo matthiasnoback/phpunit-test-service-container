@@ -1,0 +1,23 @@
+{
+    "name": "matthiasnoback/phpunit-test-service-container",
+    "type": "library",
+    "description": "Simple service container for PHPUnit tests",
+    "keywords": ["PHPUnit", "Pimple", "service container"],
+    "homepage": "http://github.com/matthiasnoback/phpunit-test-service-container",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthias Noback",
+            "email": "matthiasnoback@gmail.com",
+            "homepage": "http://php-and-symfony.matthiasnoback.nl"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "3.*",
+        "pimple/pimple": "1.*"
+    },
+    "target-dir": "Noback/PHPUnitTestServiceContainer",
+    "autoload": {
+        "psr-0" : { "Noback\\PHPUnitTestServiceContainer" : "" }
+    }
+}
