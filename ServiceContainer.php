@@ -15,6 +15,8 @@ class ServiceContainer extends \Pimple implements ServiceContainerInterface
 
     public function register(ServiceProviderInterface $serviceProvider)
     {
+        $serviceProvider->register($this);
+
         $this->serviceProviders[] = $serviceProvider;
     }
 

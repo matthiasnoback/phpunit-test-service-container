@@ -14,6 +14,18 @@ class ServiceContainerTest extends \PHPUnit_Framework_TestCase
     {
         $serviceContainer = new ServiceContainer();
 
+        $serviceProvider = $this->createMockServiceProvider('register', $serviceContainer);
+
+        $serviceContainer->register($serviceProvider);
+    }
+
+    /**
+     * @test
+     */
+    public function it_allows_service_provider_to_set_up_before_tests()
+    {
+        $serviceContainer = new ServiceContainer();
+
         $serviceProvider = $this->createMockServiceProvider('setUp', $serviceContainer);
 
         $serviceContainer->register($serviceProvider);
