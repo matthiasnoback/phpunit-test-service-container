@@ -58,7 +58,7 @@ class ServiceContainerTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('Noback\PHPUnitTestServiceContainer\Exception\ServiceContainerNotReadyException');
 
-        $service = $serviceContainer['some_service'];
+        $serviceContainer->offsetGet('some_service');
     }
 
     /**
@@ -70,7 +70,7 @@ class ServiceContainerTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('Noback\PHPUnitTestServiceContainer\Exception\ServiceContainerNotReadyException');
 
-        $serviceExists = isset($serviceContainer['some_service']);
+        $serviceContainer->offsetExists('some_service');
     }
 
     /**
