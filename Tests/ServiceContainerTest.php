@@ -4,8 +4,9 @@
 namespace Noback\PHPUnitTestServiceContainer\Tests;
 
 use Noback\PHPUnitTestServiceContainer\ServiceContainer;
+use PHPUnit\Framework\TestCase;
 
-class ServiceContainerTest extends \PHPUnit_Framework_TestCase
+class ServiceContainerTest extends TestCase
 {
     /**
      * @test
@@ -56,7 +57,7 @@ class ServiceContainerTest extends \PHPUnit_Framework_TestCase
     {
         $serviceContainer = new ServiceContainer();
 
-        $this->setExpectedException('Noback\PHPUnitTestServiceContainer\Exception\ServiceContainerNotReadyException');
+        $this->expectException('Noback\PHPUnitTestServiceContainer\Exception\ServiceContainerNotReadyException');
 
         $serviceContainer->offsetGet('some_service');
     }
@@ -68,7 +69,7 @@ class ServiceContainerTest extends \PHPUnit_Framework_TestCase
     {
         $serviceContainer = new ServiceContainer();
 
-        $this->setExpectedException('Noback\PHPUnitTestServiceContainer\Exception\ServiceContainerNotReadyException');
+        $this->expectException('Noback\PHPUnitTestServiceContainer\Exception\ServiceContainerNotReadyException');
 
         $serviceContainer->offsetExists('some_service');
     }
@@ -109,7 +110,7 @@ class ServiceContainerTest extends \PHPUnit_Framework_TestCase
 
     private function createMockServiceProvider($method, ServiceContainer $serviceContainer)
     {
-        $serviceProvider = $this->getMock('Noback\PHPUnitTestServiceContainer\ServiceProviderInterface');
+        $serviceProvider = $this->createMock('Noback\PHPUnitTestServiceContainer\ServiceProviderInterface');
 
         $serviceProvider
             ->expects($this->once())
