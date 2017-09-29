@@ -5,11 +5,12 @@ namespace Noback\PHPUnitTestServiceContainer\PHPUnit;
 use Noback\PHPUnitTestServiceContainer\ServiceContainer;
 use Noback\PHPUnitTestServiceContainer\ServiceContainerInterface;
 use Noback\PHPUnitTestServiceContainer\ServiceProviderInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Extend from this test case to make use of a service container in your tests
  */
-abstract class AbstractTestCaseWithServiceContainer extends \PHPUnit_Framework_TestCase
+abstract class AbstractTestCaseWithServiceContainer extends TestCase
 {
     /**
      * @var ServiceContainerInterface
