@@ -1,40 +1,39 @@
 <?php
+declare(strict_types=1);
 
 namespace Noback\PHPUnitTestServiceContainer\PHPUnit;
 
 use Noback\PHPUnitTestServiceContainer\ServiceContainer;
-use Noback\PHPUnitTestServiceContainer\ServiceContainerInterface;
-use Noback\PHPUnitTestServiceContainer\ServiceProviderInterface;
-use PHPUnit\Framework\TestCase;
+use Noback\PHPUnitTestServiceContainer\ServiceProvider;
 
 /**
  * Extend from this test case to make use of a service container in your tests
  */
-abstract class AbstractTestCaseWithServiceContainer extends TestCase
+trait TestCaseWithServiceContainer
 {
     /**
-     * @var ServiceContainerInterface
+     * @var ServiceContainer
      */
     protected $container;
 
     /**
      * Return an array of ServiceProviderInterface instances you want to use in this test case
      *
-     * @return ServiceProviderInterface[]
+     * @return ServiceProvider[]
      */
-    abstract protected function getServiceProviders();
+    abstract protected function getServiceProviders(): array;
 
     /**
-     * When overriding this method, make sure you call parent::setUp()
+     * @before
      */
-    protected function setUp()
+    public function setUpContainer()
     {
         $this->container = $this->createServiceContainer();
 
         $this->container->setUp();
     }
 
-    protected function createServiceContainer()
+    private function createServiceContainer(): ServiceContainer
     {
         $container = new ServiceContainer();
 
@@ -46,9 +45,9 @@ abstract class AbstractTestCaseWithServiceContainer extends TestCase
     }
 
     /**
-     * When overriding this method, make sure you call parent::tearDown()
+     * @after
      */
-    protected function tearDown()
+    public function tearDownContainer()
     {
         $this->container->tearDown();
         $this->container = null;

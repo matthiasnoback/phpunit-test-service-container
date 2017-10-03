@@ -2,26 +2,15 @@
 
 namespace Noback\PHPUnitTestServiceContainer;
 
+use Pimple\ServiceProviderInterface;
+
 /**
  * Implement this interface to extend service containers
  *
  * A service provider is allowed to register services to the service container.
  */
-interface ServiceProviderInterface
+interface ServiceProvider extends ServiceProviderInterface
 {
-    /**
-     * Will be called when the service provider is first registered
-     *
-     * Use the provided ServiceContainerInterface instance to register services and parameters.
-     *
-     * For example:
-     *
-     *   $serviceContainer['connection'] = $serviceContainer->share(function() {
-     *       return new Connection();
-     *   });
-     */
-    public function register(ServiceContainerInterface $serviceContainer);
-
     /**
      * Will be called before each test method in a test class (setUp)
      *
@@ -31,8 +20,11 @@ interface ServiceProviderInterface
      *
      *   $serviceContainer['database']->create();
      *   $serviceContainer['schema']->create($serviceContainer['database']);
+     *
+     * @param ServiceContainer $serviceContainer
+     * @return void
      */
-    public function setUp(ServiceContainerInterface $serviceContainer);
+    public function setUp(ServiceContainer $serviceContainer);
 
     /**
      * Will be called after each test method in a test class (tearDown)
@@ -40,6 +32,9 @@ interface ServiceProviderInterface
      * Use it to reset services with state, or remove other traces of the previous test.
      *
      *   $serviceContainer['database']->drop();
+     *
+     * @param ServiceContainer $serviceContainer
+     * @return void
      */
-    public function tearDown(ServiceContainerInterface $serviceContainer);
+    public function tearDown(ServiceContainer $serviceContainer);
 }
