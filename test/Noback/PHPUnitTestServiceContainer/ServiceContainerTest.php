@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Noback\PHPUnitTestServiceContainer;
 
 use PHPUnit\Framework\TestCase;
+use Smartschool\Db\DbalConnectionFactory;
 
 final class ServiceContainerTest extends TestCase
 {
@@ -12,17 +13,27 @@ final class ServiceContainerTest extends TestCase
      */
     public function it_calls_setUp_on_all_providers()
     {
-        $serviceProvider1 = $this->prophesize(ServiceProvider::class);
-        $serviceProvider2 = $this->prophesize(ServiceProvider::class);
+        $serviceProvider1 = $this->getMockBuilder(ServiceProvider::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $serviceProvider2 = $this->getMockBuilder(ServiceProvider::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $serviceContainer = new ServiceContainer();
-        $serviceContainer->register($serviceProvider1->reveal());
-        $serviceContainer->register($serviceProvider2->reveal());
+        $serviceContainer->register($serviceProvider1);
+        $serviceContainer->register($serviceProvider2);
+
+        $serviceProvider1->expects(self::once())
+            ->method('setUp')
+            ->with($serviceContainer);
+
+        $serviceProvider2->expects(self::once())
+            ->method('setUp')
+            ->with($serviceContainer);
 
         $serviceContainer->setUp();
-
-        $serviceProvider1->setUp($serviceContainer)->shouldHaveBeenCalled();
-        $serviceProvider2->setUp($serviceContainer)->shouldHaveBeenCalled();
     }
 
     /**
@@ -30,16 +41,28 @@ final class ServiceContainerTest extends TestCase
      */
     public function it_calls_tearDown_on_all_providers()
     {
-        $serviceProvider1 = $this->prophesize(ServiceProvider::class);
-        $serviceProvider2 = $this->prophesize(ServiceProvider::class);
+        $serviceProvider1 = $this
+            ->getMockBuilder(ServiceProvider::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $serviceProvider2 = $this
+            ->getMockBuilder(ServiceProvider::class)
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $serviceContainer = new ServiceContainer();
-        $serviceContainer->register($serviceProvider1->reveal());
-        $serviceContainer->register($serviceProvider2->reveal());
+        $serviceContainer->register($serviceProvider1);
+        $serviceContainer->register($serviceProvider2);
+
+        $serviceProvider1->expects(self::once())
+            ->method('tearDown')
+            ->with($serviceContainer);
+
+        $serviceProvider2->expects(self::once())
+            ->method('tearDown')
+            ->with($serviceContainer);
 
         $serviceContainer->tearDown();
-
-        $serviceProvider1->tearDown($serviceContainer)->shouldHaveBeenCalled();
-        $serviceProvider2->tearDown($serviceContainer)->shouldHaveBeenCalled();
     }
 }
