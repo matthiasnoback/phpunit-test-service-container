@@ -27,19 +27,13 @@ final class TestCaseWithServiceContainerTest extends TestCase
         return [self::$serviceProviderSpy];
     }
 
-    /**
-     * @test
-     */
-    public function it_has_called_setUp_on_the_service_provider()
+    public function test_it_has_called_setUp_on_the_service_provider()
     {
         self::assertTrue(self::$serviceProviderSpy->setUpCalled);
         self::assertFalse(self::$serviceProviderSpy->tearDownCalled);
     }
 
-    /**
-     * @afterClass
-     */
-    public static function verifyTearDown()
+    public static function tearDownAfterClass(): void
     {
         self::assertTrue(self::$serviceProviderSpy->tearDownCalled);
     }
