@@ -23,10 +23,7 @@ trait TestCaseWithServiceContainer
      */
     abstract protected function getServiceProviders(): array;
 
-    /**
-     * @before
-     */
-    public function setUpContainer()
+    public function setUp(): void
     {
         $this->container = $this->createServiceContainer();
 
@@ -44,10 +41,7 @@ trait TestCaseWithServiceContainer
         return $container;
     }
 
-    /**
-     * @after
-     */
-    public function tearDownContainer()
+    public function tearDown(): void
     {
         $this->container->tearDown();
         $this->container = null;
