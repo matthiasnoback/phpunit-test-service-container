@@ -1,6 +1,6 @@
 # PHPUnit test service container
 
-[![Build Status](https://travis-ci.org/matthiasnoback/phpunit-test-service-container.png?branch=master)](https://travis-ci.org/matthiasnoback/phpunit-test-service-container)
+[![CI](https://github.com/matthiasnoback/phpunit-test-service-container/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/matthiasnoback/phpunit-test-service-container/actions/workflows/ci.yml)
 
 This library provides a simple service container which makes use of service providers. It also provides a base class for
 your test cases which provides access to such a service container.

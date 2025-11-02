@@ -7,7 +7,7 @@
     "Pimple",
     "service container"
   ],
-  "homepage": "http://github.com/matthiasnoback/phpunit-test-service-container",
+  "homepage": "https://github.com/matthiasnoback/phpunit-test-service-container",
   "license": "MIT",
   "authors": [
     {
