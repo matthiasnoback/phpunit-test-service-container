@@ -7,7 +7,7 @@
     "Pimple",
     "service container"
   ],
-  "homepage": "http://github.com/matthiasnoback/phpunit-test-service-container",
+  "homepage": "https://github.com/matthiasnoback/phpunit-test-service-container",
   "license": "MIT",
   "authors": [
     {
@@ -17,8 +17,8 @@
     }
   ],
   "require": {
-    "php": "^7.0 || ^8.0",
-    "phpunit/phpunit": "~6.0||~7.0||~8.0||~9.0",
+    "php": "^7.1 || ^8.0",
+    "phpunit/phpunit": "~6.0||~7.0||~8.0||~9.0||^10.0||^11.0||^12.0",
     "pimple/pimple": "~3.0"
   },
   "autoload": {

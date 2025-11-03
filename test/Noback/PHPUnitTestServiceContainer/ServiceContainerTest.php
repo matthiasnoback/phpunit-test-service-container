@@ -8,10 +8,7 @@ use Smartschool\Db\DbalConnectionFactory;
 
 final class ServiceContainerTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function it_calls_setUp_on_all_providers()
+    public function test_it_calls_setUp_on_all_providers()
     {
         $serviceProvider1 = $this->getMockBuilder(ServiceProvider::class)
             ->disableOriginalConstructor()
@@ -36,10 +33,7 @@ final class ServiceContainerTest extends TestCase
         $serviceContainer->setUp();
     }
 
-    /**
-     * @test
-     */
-    public function it_calls_tearDown_on_all_providers()
+    public function test_it_calls_tearDown_on_all_providers()
     {
         $serviceProvider1 = $this
             ->getMockBuilder(ServiceProvider::class)
